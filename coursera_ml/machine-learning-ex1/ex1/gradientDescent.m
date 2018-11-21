@@ -17,12 +17,19 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-    X1_vals = X(:, 1);
-    X2_vals = X(:, 2);
+    % Vectorize
     error = (X * theta) - y;
-    temp0 = theta(1, 1) - (alpha / m) * sum(error);
-    temp1 = theta(2, 1) - (alpha / m) * sum(error .* X2_vals);
-    theta = [temp0; temp1];
+    der = sum(error .* X, 1);
+    der = der';
+    theta = theta - (alpha / m) * der;
+
+    % Manual Calculation
+    % error = X * theta - y;
+    % X1_vals = X(:, 1);
+    % X2_vals = X(:, 2);
+    % temp0 = theta(1, 1) - (alpha / m) * sum(error .* X1_vals);
+    % temp1 = theta(2, 1) - (alpha / m) * sum(error .* X2_vals);
+    % theta = [temp0; temp1];
 
 
     % ============================================================
