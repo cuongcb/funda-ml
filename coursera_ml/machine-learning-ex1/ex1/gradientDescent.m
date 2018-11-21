@@ -20,11 +20,9 @@ for iter = 1:num_iters
     X1_vals = X(:, 1);
     X2_vals = X(:, 2);
     error = (X * theta) - y;
-    temp0 = theta(1) - (alpha / m) * sum(error .* X1_vals);
-    temp1 = theta(2) - (alpha / m) * sum(error .* X2_vals);
+    temp0 = theta(1, 1) - (alpha / m) * sum(error);
+    temp1 = theta(2, 1) - (alpha / m) * sum(error .* X2_vals);
     theta = [temp0; temp1];
-
-
 
 
     % ============================================================
